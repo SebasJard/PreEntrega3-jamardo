@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Productos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Productos disponibles</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Pizza</h2>
+            <p>Categoría: Comida</p>
+            <p>Precio: $10</p>
+            <p>Existencia: 5</p>
+            <button class="agregar" data-nombre="Pizza">Agregar al carrito</button>
+        </section>
+        <section>
+            <h2>Soda</h2>
+            <p>Categoría: Bebida</p>
+            <p>Precio: $2</p>
+            <p>Existencia: 10</p>
+            <button class="agregar" data-nombre="Soda">Agregar al carrito</button>
+        </section>
+        <section>
+            <h2>Helado</h2>
+            <p>Categoría: Postre</p>
+            <p>Precio: $5</p>
+            <p>Existencia: 3</p>
+            <button class="agregar" data-nombre="Helado">Agregar al carrito</button>
+        </section>
+        <form>
+            <h2>Procesar pago</h2>
+            <label>
+                <input type="radio" name="metodo-pago" value="en linea" checked>
+                Pagar en línea
+            </label>
+            <label>
+                <input type="radio" name="metodo-pago" value="en persona">
+                Pagar en persona
+            </label>
+            <button type="submit" id="procesar-pago">Procesar pago</button>
+        </form>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
