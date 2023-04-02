@@ -16,8 +16,33 @@ let helado = new Producto("Postre", "Helado", 5, 3);
 // Crear un array productos que contenga los objetos Producto creados anteriormente
 let productos = [pizza, soda, helado];
 
+// Función para guardar el carrito en localStorage
+function guardarCarrito() {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+// Función para obtener el carrito de localStorage
+function obtenerCarrito() {
+    let carritoJSON = localStorage.getItem("carrito");
+    if (carritoJSON) {
+        return JSON.parse(carritoJSON);
+    } else {
+        return {};
+    }
+}
+
 // Crear un objeto carrito para almacenar los productos agregados por el usuario
-let carrito = {};
+let carrito = obtenerCarrito();
+
+// Función para actualizar la cantidad de productos en el carrito mostrada en la UI
+function actualizarCantidadProductos() {
+    let cantidadProductos = 0;
+    for (let producto in carrito) {
+        cantidadProductos += carrito[producto].cantidad;
+    }
+    let spanCantidadProductos = document.querySelector("#cantidad-productos");
+    spanCantidadProductos.textContent = cantidadProductos;
+}
 
 // Función para agregar un producto al carrito
 function agregarAlCarrito(event) {
@@ -25,7 +50,9 @@ function agregarAlCarrito(event) {
     const form = event.target;
     const productoNombre = form.dataset.nombre;
     const cantidad = parseInt(form.elements.cantidad.value);
-    const producto = productos.find((producto) => producto.nombre === productoNombre);
+    const producto = productos.find(
+        (producto) => producto.nombre === productoNombre
+    );
     if (producto.existencia >= cantidad) {
         if (carrito[producto.nombre]) {
             carrito[producto.nombre].cantidad += cantidad;
@@ -38,8 +65,12 @@ function agregarAlCarrito(event) {
         }
         producto.existencia -= cantidad;
         console.log(`Se ha agregado ${cantidad} ${producto.nombre} al carrito.`);
+        actualizarCantidadProductos();
+        guardarCarrito();
     } else {
-        console.log(`Lo siento, no hay suficiente stock de ${producto.nombre} para agregar ${cantidad} al carrito.`);
+        console.log(
+            `Lo siento, no hay suficiente stock de ${producto.nombre} para agregar ${cantidad} al carrito.`
+        );
     }
 }
 
@@ -53,35 +84,11 @@ function procesarPago(metodoPago) {
     if (metodoPago === "en linea") {
         console.log("El pago se ha procesado en línea.");
     } else if (metodoPago === "en persona") {
-        let horaRecogida = prompt("Ingrese la hora a la que va a recoger su pedido (en formato hh:mm):");
+        let horaRecogida = prompt(
+            "Ingrese la hora a la que va a recoger su pedido (en formato hh:mm):"
+        );
         console.log(`Su pedido estará listo para recoger a las ${horaRecogida}.`);
     }
+    carrito = {};
+    localStorage.removeItem("carrito");
 }
-
-// Agregar un listener de evento al botón "Agregar al carrito" de cada producto
-let botonesAgregar = document.querySelectorAll(".agregar");
-botonesAgregar.forEach((boton) => {
-    boton.addEventListener("click", (event) => {
-        const productoNombre = event.target.dataset.nombre;
-        const producto = productos.find((producto) => producto.nombre === productoNombre);
-        const form = document.createElement("form");
-        form.dataset.nombre = productoNombre;
-        form.addEventListener("submit", agregarAlCarrito);
-        const inputCantidad = document.createElement("input");
-        inputCantidad.type = "number";
-        inputCantidad.name = "cantidad"; // Agregar el atributo "name" al input
-        inputCantidad.min = "1"; // Agregar el atributo "min" al input
-        inputCantidad.value = "1"; // Establecer el valor inicial del input en 1
-        const labelCantidad = document.createElement("label");
-        labelCantidad.textContent = "Cantidad: ";
-        labelCantidad.appendChild(inputCantidad);
-        const botonAgregar = document.createElement("button");
-        botonAgregar.type = "submit";
-        botonAgregar.textContent = "Agregar al carrito";
-        form.appendChild(labelCantidad);
-        form.appendChild(botonAgregar);
-        const productosEl = document.querySelector(".productos");
-        productosEl.appendChild(form);
-    });
-});
-
