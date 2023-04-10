@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tienda Virtual</title>
+</head>
+
+<body>
+	<h1>Tienda Virtual</h1>
+
+	<h2>Productos</h2>
+	<ul>
+		<li>
+			<h3>Pizza</h3>
+			<p>Categoría: Comida</p>
+			<p>Precio: $10</p>
+			<p>Existencia: 5</p>
+			<form action="" method="post" data-nombre="Pizza" class="agregar-al-carrito">
+				<label for="cantidad-pizza">Cantidad:</label>
+				<input type="number" id="cantidad-pizza" name="cantidad" value="1" min="1" max="5">
+				<button type="submit">Agregar al carrito</button>
+			</form>
+		</li>
+		<li>
+			<h3>Soda</h3>
+			<p>Categoría: Bebida</p>
+			<p>Precio: $2</p>
+			<p>Existencia: 10</p>
+			<form action="" method="post" data-nombre="Soda" class="agregar-al-carrito">
+				<label for="cantidad-soda">Cantidad:</label>
+				<input type="number" id="cantidad-soda" name="cantidad" value="1" min="1" max="10">
+				<button type="submit">Agregar al carrito</button>
+			</form>
+		</li>
+		<li>
+			<h3>Helado</h3>
+			<p>Categoría: Postre</p>
+			<p>Precio: $5</p>
+			<p>Existencia: 3</p>
+			<form action="" method="post" data-nombre="Helado" class="agregar-al-carrito">
+				<label for="cantidad-helado">Cantidad:</label>
+				<input type="number" id="cantidad-helado" name="cantidad" value="1" min="1" max="3">
+				<button type="submit">Agregar al carrito</button>
+			</form>
+		</li>
+	</ul>
+
+	<h2>Carrito</h2>
+	<p>Cantidad de productos: <span id="cantidad-productos">0</span></p>
+	<ul id="lista-productos"></ul>
+	<p>Total a pagar: $<span id="total"></span></p>
+	<form action="" method="post">
+		<label for="metodo-pago">Método de pago:</label>
+		<select id="metodo-pago" name="metodo_pago">
+			<option value="tarjeta">Tarjeta de crédito</option>
+			<option value="paypal">PayPal</option>
+		</select>
+		<button type="submit">Procesar pago</button>
+	</form>
+
+	<script src="script.js"></script>
+</body>
+
+</html>
