@@ -1,0 +1,100 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+/* Estilos del formulario */
+form {
+    border: 2px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos de la tabla de productos */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Estilos del botón "Agregar al carrito" */
+.agregar-al-carrito {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.agregar-al-carrito:hover {
+    background-color: #45a049;
+}
